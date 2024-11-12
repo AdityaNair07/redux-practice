@@ -1,23 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-export const slice = createSlice({
-  name: "alert",
-  initialState: {
-    value: 0,
-  },
+const initialState = { todos: [] };
+
+export const todoSlice = createSlice({
+  name: "todos",
+  initialState,
   reducers: {
-    increment: (state, action) => {
-      state.value += 1;
+    addTodo: (state, action) => {
+      const newTodo = { id: nanoid(), text: action.payload };
+      state.todos.push(newTodo);
     },
-    decrement: (state, action) => {
-      state.value -= 1;
+    removeTodo: (state, action) => {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
-    incrementByValue: (state, action) => {
-      state.value += action.payload;
+    updateTodo: (state, action) => {
+      const { id, text } = action.payload;
+      const todoIndex = state.todos.findIndex((todo) => todo.id === id);
+      if (todoIndex !== -1) {
+        state.todos[todoIndex].text = text;
+      }
     },
   },
 });
 
-export const { increment, decrement, incrementByValue } = slice.actions;
+export const { addTodo, removeTodo, updateTodo } = todoSlice.actions;
 
-export default slice.reducer;
+export default todoSlice.reducer;

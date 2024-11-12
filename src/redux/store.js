@@ -1,8 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import StuffReducer from "./slices";
+import todoReducer from "./slices";
 
 export const store = configureStore({
-  reducer: {
-    stuff: StuffReducer,
-  },
+  reducer: todoReducer,
 });
