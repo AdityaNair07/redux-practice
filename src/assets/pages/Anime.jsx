@@ -12,20 +12,20 @@ const successMsg = () => {
     closeOnClick: true,
   });
 };
-// const errorMsg = () => {
-//   toast.error("Couldn't add to cart!", {
-//     position: "top-right",
-//     autoClose: 5000,
-//     hideProgressBar: false,
-//     closeOnClick: true,
-//   });
-// };
+const removeMsg = () => {
+  toast.error("Item removed from cart!", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+  });
+};
 
 const Anime = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="container lg:px-10 mx-auto relative py-20 bg-red-400 min-h-screen h-full flex flex-col gap-10">
+    <div className="lg:px-10 mx-auto relative py-20 bg-red-400 min-h-screen h-full flex flex-col gap-10">
       <Navbar />
       This is Anime page
       <button
@@ -36,6 +36,15 @@ const Anime = () => {
         }}
       >
         Add Item in Cart
+      </button>
+      <button
+        className="p-2 rounded-md shadow-md border cursor-pointer"
+        onClick={() => {
+          dispatch(addProduct("Sasuke Figurine"));
+          removeMsg();
+        }}
+      >
+        Remove Item in Cart
       </button>
       <ToastContainer />
     </div>

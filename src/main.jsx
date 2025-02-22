@@ -15,13 +15,17 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/tech",
+    path: "/products",
     element: <Tech />,
   },
-  {
-    path: "/anime",
-    element: <Anime />,
-  },
+  // {
+  //   path: "/tech",
+  //   element: <Tech />,
+  // },
+  // {
+  //   path: "/anime",
+  //   element: <Anime />,
+  // },
 ]);
 
 createRoot(document.getElementById("root")).render(
